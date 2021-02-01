@@ -10,3 +10,4 @@ edition = "2018"
 
 piston = "0.52.1"
 piston_window = "0.117.0"
+pistoncore-sdl2_window = "0.67.0"
