@@ -1,5 +1,6 @@
 extern crate piston;
 extern crate piston_window;
+extern crate sdl2_window;
 
 use piston::EventSettings;
 use piston::Events;
@@ -7,22 +8,24 @@ use piston_window::clear;
 use piston_window::rectangle;
 use piston_window::PistonWindow;
 use piston_window::WindowSettings;
+use sdl2_window::Sdl2Window;
 
 mod settings;
 use settings::GameSettings;
 
 pub struct Game {
     pub settings: GameSettings,
-    window: PistonWindow,
+    window: PistonWindow<Sdl2Window>,
 }
 
 impl Game {
     pub fn new() -> Self {
         let settings = GameSettings::default();
-        let window: PistonWindow = WindowSettings::new("Rust grid game", settings.screen_size)
-            .exit_on_esc(true)
-            .build()
-            .unwrap();
+        let window: PistonWindow<Sdl2Window> =
+            WindowSettings::new("Rust grid game", settings.screen_size)
+                .exit_on_esc(true)
+                .build()
+                .unwrap();
         Game { settings, window }
     }
     pub fn start(&mut self) {
